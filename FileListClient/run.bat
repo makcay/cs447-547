@@ -1,0 +1,1 @@
+java -classpath "bin;lib/*" client.dummyClient 172.20.10.3:5000
