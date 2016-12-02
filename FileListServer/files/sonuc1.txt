@@ -1,0 +1,4 @@
+rawOffsetHour :3
+GMT ID  :Asia/Istanbul RawOffset :10800000
+Time Zone  :Eastern European Time DSTSaving :0
+Timezone Check.. OK [patched successfully]
