@@ -6,8 +6,7 @@ import java.util.Arrays;
 public class ResponseType {
 	
 	public static final int HEADER_SIZE=10;
-	public static final int MAX_DATA_SIZE=1000;
-	public static final int MAX_RESPONSE_SIZE=HEADER_SIZE+MAX_DATA_SIZE;
+	public static int MAX_DATA_SIZE=1000;
 	
 	public class RESPONSE_TYPES{
 		public static final int GET_FILE_LIST_SUCCESS=1;
@@ -109,6 +108,10 @@ public class ResponseType {
 
 	public byte[] getData() {
 		return data;
+	}
+	
+	public static int MAX_RESPONSE_SIZE(){
+		return HEADER_SIZE+MAX_DATA_SIZE;
 	}
 	
 	@Override

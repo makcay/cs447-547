@@ -20,7 +20,7 @@ public class FileSizeResponseType extends ResponseType {
 			byte[] data=this.getData();
 			fileSize=0;
 			for(int i=0;i<4;i++){
-				fileSize=(fileSize << 8)|data[i];
+				fileSize=(fileSize << 8)|((int)data[i] & 0xFF);
 			}
 		}
 	}

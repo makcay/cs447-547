@@ -1,7 +1,9 @@
 package server;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.Inet4Address;
@@ -13,6 +15,7 @@ import java.util.Collections;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Properties;
 import java.util.Scanner;
 
 import model.FileDescriptor;
@@ -26,14 +29,39 @@ public class FileListServer {
 	private Hashtable<Integer, File> files=new Hashtable<Integer,File>();
 	
 	public static final String FILES_FOLDER="files";
+	public static final String PROPERTIES_FILE="conf/server.properties";
 	
 	public FileListServer() throws SocketException{
 		this.loadFileList();
 		this.selectInterface();
 		this.selectPort();
 		this.startListening();
+		this.readPropertiesFile();
 	}
 	
+	public void readPropertiesFile(){
+		Properties prop = new Properties();
+		OutputStream output = null;
+		int maxDataSize=1000;
+		try {
+			output = new FileOutputStream(PROPERTIES_FILE);
+			String maxDataSizeStr=prop.getProperty("MAX_DATA_SIZE");
+			maxDataSize=Integer.valueOf(maxDataSizeStr).intValue();
+		} catch (IOException io) {
+			io.printStackTrace();
+		} finally {
+			if (output != null) {
+				try {
+					output.close();
+					ResponseType.MAX_DATA_SIZE=maxDataSize;
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+	
+		}
+	}
+
 	private void loadFileList(){
 		File folder = new File(FILES_FOLDER);
 		File[] listOfFiles = folder.listFiles();
@@ -100,7 +128,7 @@ public class FileListServer {
 	private void startListening() throws SocketException{
 		if (selectedInterface!=null && port>0){
 			DatagramSocket serverSocket=new DatagramSocket(port, selectedInterface.getInetAddress());
-			byte[] receiveData = new byte[ResponseType.MAX_RESPONSE_SIZE];
+			byte[] receiveData = new byte[ResponseType.MAX_RESPONSE_SIZE()];
 			 while(true){
 				 try{
 					 DatagramPacket receivePacket=new DatagramPacket(receiveData, receiveData.length);

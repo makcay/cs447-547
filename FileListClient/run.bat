@@ -1,1 +1,1 @@
-java -classpath "bin;lib/*" client.dummyClient 192.168.1.25:5000
+java -classpath "bin;lib/*" client.dummyClient $1
