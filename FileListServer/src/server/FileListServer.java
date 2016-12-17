@@ -1,9 +1,9 @@
 package server;
 
 import java.io.File;
-import java.io.FileOutputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.OutputStream;
+import java.io.InputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.Inet4Address;
@@ -33,32 +33,34 @@ public class FileListServer {
 	
 	public FileListServer() throws SocketException{
 		this.loadFileList();
+		this.readPropertiesFile();
 		this.selectInterface();
 		this.selectPort();
 		this.startListening();
-		this.readPropertiesFile();
 	}
 	
 	public void readPropertiesFile(){
 		Properties prop = new Properties();
-		OutputStream output = null;
+		InputStream propFile = null;
 		int maxDataSize=1000;
 		try {
-			output = new FileOutputStream(PROPERTIES_FILE);
+			propFile = new FileInputStream(PROPERTIES_FILE);
+			prop.load(propFile);
 			String maxDataSizeStr=prop.getProperty("MAX_DATA_SIZE");
 			maxDataSize=Integer.valueOf(maxDataSizeStr).intValue();
-		} catch (IOException io) {
-			io.printStackTrace();
+		} catch (IOException ex) {
+			loggerManager.getInstance(this.getClass()).debug(ex.toString());
+		} catch (NumberFormatException ex){
+			loggerManager.getInstance(this.getClass()).debug(ex.toString());
 		} finally {
-			if (output != null) {
+			if (propFile != null) {
 				try {
-					output.close();
-					ResponseType.MAX_DATA_SIZE=maxDataSize;
+					propFile.close();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
 			}
-	
+			ResponseType.MAX_DATA_SIZE=maxDataSize;
 		}
 	}
 
