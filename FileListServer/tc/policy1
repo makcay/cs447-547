@@ -1,0 +1,14 @@
+delay 1000ms
+rate 1Kbps
+wait 10
+loss 30% 
+delay 0ms 
+rate 10Mbps
+wait 5
+rate 50Mbps
+wait 10
+loss 10%
+wait 5
+rate 1Kbps
+wait 2
+rate 100 

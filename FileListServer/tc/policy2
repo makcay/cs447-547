@@ -1,0 +1,11 @@
+rate 0.1Kbps
+wait 5 
+rate 10Mbps
+wait 5
+rate 50Mbps
+loss 10%
+wait 5
+rate 1Kbps
+wait 2
+rate 100
+loss 100% 
