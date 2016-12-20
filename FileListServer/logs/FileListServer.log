@@ -3065,3 +3065,25 @@ Thread-10 WARN  server.FileRequestHandler - Response_type:101 Error Reponse sent
 Thread-12 WARN  server.FileRequestHandler - Response_type:101 Error Reponse sent to client:/192.168.1.32:50155
 Thread-13 WARN  server.FileRequestHandler - Response_type:102 Error Reponse sent to client:/192.168.1.32:53858
 Thread-14 INFO  server.FileRequestHandler - Transferred fileId:1 file_name:sonuc1.txt size:154
+main DEBUG server.FileListServer - selectedInterface: wlan0/192.168.1.32
+main DEBUG server.FileListServer - selectedPort: 5000
+Thread-1 WARN  server.FileRequestHandler - Response_type:100 Error Reponse sent to client:/192.168.1.32:60995
+Thread-3 WARN  server.FileRequestHandler - Response_type:101 Error Reponse sent to client:/192.168.1.32:40758
+Thread-5 WARN  server.FileRequestHandler - Response_type:101 Error Reponse sent to client:/192.168.1.32:40339
+Thread-6 WARN  server.FileRequestHandler - Response_type:102 Error Reponse sent to client:/192.168.1.32:37752
+Thread-7 INFO  server.FileRequestHandler - Transferred fileId:1 file_name:sonuc1.txt size:154
+Thread-8 WARN  server.FileRequestHandler - Response_type:100 Error Reponse sent to client:/192.168.1.32:53262
+Thread-10 WARN  server.FileRequestHandler - Response_type:101 Error Reponse sent to client:/192.168.1.32:52849
+Thread-12 WARN  server.FileRequestHandler - Response_type:101 Error Reponse sent to client:/192.168.1.32:56628
+Thread-13 WARN  server.FileRequestHandler - Response_type:102 Error Reponse sent to client:/192.168.1.32:45695
+Thread-14 INFO  server.FileRequestHandler - Transferred fileId:1 file_name:sonuc1.txt size:154
+Thread-15 WARN  server.FileRequestHandler - Response_type:100 Error Reponse sent to client:/192.168.1.32:58996
+Thread-17 WARN  server.FileRequestHandler - Response_type:101 Error Reponse sent to client:/192.168.1.32:44353
+Thread-19 WARN  server.FileRequestHandler - Response_type:101 Error Reponse sent to client:/192.168.1.32:47345
+Thread-20 WARN  server.FileRequestHandler - Response_type:102 Error Reponse sent to client:/192.168.1.32:44076
+Thread-21 INFO  server.FileRequestHandler - Transferred fileId:1 file_name:sonuc1.txt size:154
+Thread-22 WARN  server.FileRequestHandler - Response_type:100 Error Reponse sent to client:/192.168.1.32:59929
+Thread-24 WARN  server.FileRequestHandler - Response_type:101 Error Reponse sent to client:/192.168.1.32:37235
+Thread-26 WARN  server.FileRequestHandler - Response_type:101 Error Reponse sent to client:/192.168.1.32:45664
+Thread-27 WARN  server.FileRequestHandler - Response_type:102 Error Reponse sent to client:/192.168.1.32:47855
+Thread-28 INFO  server.FileRequestHandler - Transferred fileId:1 file_name:sonuc1.txt size:154

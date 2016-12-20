@@ -22,7 +22,7 @@ public class FileListResponseType extends ResponseType {
 		int foundFiles=0;
 		int dataIndex=0;
 		while(foundFiles<files.length && dataIndex<data.length){
-			int file_id=data[dataIndex];
+			int file_id=((int)data[dataIndex] & 0xFF);
 			dataIndex++;
 			StringBuffer file_name=new StringBuffer();
 			while(dataIndex<data.length && data[dataIndex]!='\0'){
@@ -31,6 +31,7 @@ public class FileListResponseType extends ResponseType {
 			}
 			files[foundFiles]=new FileDescriptor(file_id, file_name.toString());
 			foundFiles++;
+			dataIndex++;
 		}
 		
 		if (foundFiles!=files.length){
