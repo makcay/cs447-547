@@ -112,8 +112,9 @@ public class FileRequestHandler extends Thread{
 			byte[] buf=new byte[ResponseType.MAX_DATA_SIZE];
 			FileDataResponseType dataResponsePackage=new FileDataResponseType(ResponseType.RESPONSE_TYPES.GET_FILE_DATA_SUCCESS,file_id,0,0,buf);
 			
+			RandomAccessFile raf=null;
 			try {
-				RandomAccessFile raf=new RandomAccessFile(file, "r");
+				raf=new RandomAccessFile(file, "r");
 				while(tmpEndByte<endByte){
 					tmpEndByte=tmpStartByte+ResponseType.MAX_DATA_SIZE-1;
 					if (tmpEndByte>endByte){
@@ -133,6 +134,15 @@ public class FileRequestHandler extends Thread{
 				loggerManager.getInstance(this.getClass()).error(ex.toString());
 			} catch (IOException ex) {
 				loggerManager.getInstance(this.getClass()).error(ex.toString());
+			}
+			finally{
+				if(raf!=null){
+					try {
+						raf.close();
+					} catch (IOException ex) {
+						loggerManager.getInstance(this.getClass()).error(ex.toString());
+					}
+				}
 			}
 		}
 	}
