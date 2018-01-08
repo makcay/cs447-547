@@ -43,6 +43,7 @@ public class FileRequestHandler extends Thread{
 				sendErrorData(ResponseType.RESPONSE_TYPES.INVALID_REQUEST_TYPE);
 				
 		}
+		server.logTotalSentBytes();
 	}
 	
 	private void getFileList(){
@@ -157,6 +158,7 @@ public class FileRequestHandler extends Thread{
 		DatagramPacket out=new DatagramPacket(data, data.length,receivedPacket.getAddress(), receivedPacket.getPort());
 		try {
 			serverSocket.send(out);
+			server.increaseTotalSentBytes(data.length);
 		} catch (IOException e) {
 			loggerManager.getInstance(this.getClass()).trace(e.toString());
 		}

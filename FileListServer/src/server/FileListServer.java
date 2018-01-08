@@ -27,6 +27,7 @@ public class FileListServer {
 	private int port=-1;
 	private FileDescriptor[] file_descriptors=null;
 	private Hashtable<Integer, File> files=new Hashtable<Integer,File>();
+	private long totalSentBytes=0;
 	
 	public static final String FILES_FOLDER="files";
 	public static final String PROPERTIES_FILE="conf/server.properties";
@@ -142,6 +143,19 @@ public class FileListServer {
 				 }
 		      }
 		}
+	}
+	
+	public void increaseTotalSentBytes(long bytes){
+		totalSentBytes+=bytes;
+	}
+	
+	public void logTotalSentBytes(){
+		loggerManager.getInstance(this.getClass()).debug("totalSentBytes: "+totalSentBytes);
+	}
+	
+	public void resetTotalSentBytes(){
+		loggerManager.getInstance(this.getClass()).debug("totalSentBytes: "+totalSentBytes);
+		totalSentBytes=0;
 	}
 	
 	public FileDescriptor[] getFileDescriptors(){
