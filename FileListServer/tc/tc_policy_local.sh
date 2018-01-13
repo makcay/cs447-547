@@ -1,9 +1,9 @@
 #!/bin/bash
 TC=/usr/sbin/tc
-INTERFACE_1=eth6
+INTERFACE_1=lo
 PORT_1=5000
 FILE_1=policy1
-INTERFACE_2=eth3
+INTERFACE_2=lo
 PORT_2=5001
 FILE_2=policy2
 
