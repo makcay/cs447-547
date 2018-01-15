@@ -3087,3 +3087,10 @@ Thread-24 WARN  server.FileRequestHandler - Response_type:101 Error Reponse sent
 Thread-26 WARN  server.FileRequestHandler - Response_type:101 Error Reponse sent to client:/192.168.1.32:45664
 Thread-27 WARN  server.FileRequestHandler - Response_type:102 Error Reponse sent to client:/192.168.1.32:47855
 Thread-28 INFO  server.FileRequestHandler - Transferred fileId:1 file_name:sonuc1.txt size:154
+main DEBUG server.FileListServer - selectedInterface: lo/127.0.0.1
+main DEBUG server.FileListServer - selectedPort: 5000
+main DEBUG server.FileListServer - selectedInterface: lo/127.0.0.1
+main DEBUG server.FileListServer - selectedInterface: lo/127.0.0.1
+main DEBUG server.FileListServer - selectedInterface: lo/127.0.0.1
+main DEBUG server.FileListServer - selectedPort: 5000
+main DEBUG server.FileListServer - selectedPort: 5001
