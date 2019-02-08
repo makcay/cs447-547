@@ -10,4 +10,4 @@ RUN mvn install
 FROM openjdk:8-jre-alpine
 WORKDIR /app
 COPY --from=build /app/target/FileListServer-1.0.0.jar /app
-CMD ["java -jar FileListServer-1.0.0.jar"]
+CMD ["java -classpath FileListServer-1.0.0.jar server.FileListServer"]
