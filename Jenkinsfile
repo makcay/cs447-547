@@ -16,7 +16,7 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = docker.build("filelistserver")
+        app = docker.build("filelistserver","${WORKSPACE}/FileListServer")
     }
 
     stage('Test image') {
