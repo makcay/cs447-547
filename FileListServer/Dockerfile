@@ -12,4 +12,5 @@ RUN ["mvn", "package"]
 FROM openjdk:8-jre-alpine
 WORKDIR /app
 COPY --from=build /app/target/FileListServer-1.0.0.jar /app
-CMD ["java","-classpath","FileListServer-1.0.0.jar","server.FileListServer"]
+COPY --from=build /app/target/lib /app/lib
+CMD ["java","-classpath","FileListServer-1.0.0.jar:lib/*","server.FileListServer"]
