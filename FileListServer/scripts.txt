@@ -1,5 +1,5 @@
 docker build --no-cache . -t mygit:1
 
-docker run -it mygit:1
+docker run -it mygit:1 su -
 
 
