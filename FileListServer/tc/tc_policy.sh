@@ -1,11 +1,17 @@
 #!/bin/bash
-TC=/usr/sbin/tc
-INTERFACE_1=eth6
+TC=/sbin/tc
+INTERFACE_1=lo
 PORT_1=5000
 FILE_1=policy1
-INTERFACE_2=eth3
+INTERFACE_2=lo
 PORT_2=5001
 FILE_2=policy2
+INTERFACE_3=eth0
+PORT_3=5000
+FILE_3=policy1
+INTERFACE_4=eth0
+PORT_4=5001
+FILE_4=policy2
 
 parsePolicyFile () {
   device=$1
@@ -48,6 +54,14 @@ parsePolicyFile () {
   fi
 }
 
+policyLoop () {
+  device=$1
+  filename=$2
+  classId=$3
+  while true; do
+    parsePolicyFile $device $filename $classId
+  done
+}
 
 currentIfNo=1
 while [[ -v INTERFACE_$currentIfNo ]]; do
@@ -70,7 +84,7 @@ while [[ -v PORT_$currentIfNo ]]; do
   $TC class add dev $interface parent 1: classid 1:$currentIfNo htb rate 1024Mbps
   $TC qdisc add dev $interface parent 1:$currentIfNo netem loss 0%
   $TC filter add dev $interface protocol ip prio 1 u32 match ip sport $port 0xffff flowid 1:$currentIfNo
-  parsePolicyFile $interface $file $currentIfNo & 
+  policyLoop $interface $file $currentIfNo & 
   ((currentIfNo++))
 done
 

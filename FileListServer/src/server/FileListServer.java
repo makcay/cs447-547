@@ -10,6 +10,7 @@ import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
@@ -23,7 +24,8 @@ import model.InetAddressInterface;
 import model.ResponseType;
 
 public class FileListServer {
-	private InetAddressInterface selectedInterface=null;
+	//private InetAddressInterface selectedInterface=null;
+	private InetAddress selectedAddress=null;
 	private int port=-1;
 	private FileDescriptor[] file_descriptors=null;
 	private Hashtable<Integer, File> files=new Hashtable<Integer,File>();
@@ -32,11 +34,11 @@ public class FileListServer {
 	public static final String FILES_FOLDER="files";
 	public static final String PROPERTIES_FILE="conf/server.properties";
 	
-	public FileListServer() throws SocketException{
+	public FileListServer(String[] args) throws SocketException, UnknownHostException{
 		this.loadFileList();
 		this.readPropertiesFile();
 		this.selectInterface();
-		this.selectPort();
+		this.selectPort(args[0]);
 		this.startListening();
 	}
 	
@@ -84,6 +86,7 @@ public class FileListServer {
 		}
 	}
 	
+	/*
 	private void selectInterface() throws SocketException{
 		List<InetAddressInterface> addresses=new ArrayList<InetAddressInterface>();
 		Enumeration<NetworkInterface> nets=NetworkInterface.getNetworkInterfaces();
@@ -127,10 +130,19 @@ public class FileListServer {
 		} catch(Exception ex){}
 		loggerManager.getInstance(this.getClass()).debug("selectedPort: "+port);
 	}
+	*/
+
+	private void selectInterface() throws UnknownHostException {
+		selectedAddress = InetAddress.getByAddress(new byte[] { 0, 0, 0, 0 });
+	}
+
+	private void selectPort(String port) {
+		this.port = Integer.parseInt(port);
+	}
 	
 	private void startListening() throws SocketException{
-		if (selectedInterface!=null && port>0){
-			DatagramSocket serverSocket=new DatagramSocket(port, selectedInterface.getInetAddress());
+		if (selectedAddress!=null && port>0){
+			DatagramSocket serverSocket=new DatagramSocket(port, selectedAddress);
 			byte[] receiveData = new byte[ResponseType.MAX_RESPONSE_SIZE()];
 			 while(true){
 				 try{
@@ -166,7 +178,7 @@ public class FileListServer {
 		return files.get(file_id);
 	}
 	
-	public static void main(String[] args) throws SocketException{
-		FileListServer inst=new FileListServer();
+	public static void main(String[] args) throws SocketException, UnknownHostException{
+		FileListServer inst=new FileListServer(args);
 	}
 }
