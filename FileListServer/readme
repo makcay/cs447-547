@@ -1,8 +1,10 @@
-To run the server inside a docker container, run ./docker.sh
+Prefered method:
+To run the server inside a docker container, run ./docker_start.sh or ./docker_start.sh (depending on your OS)
 See instructions in the docker.sh file
 
+Alternative method (Not prefered):
 You can also use the server in a VM.
-To do that first create two network interface from VM settings.
+To do that first create two network interfaces from VM settings.
 VM Virtual Box Manager -> choose your machine -> settings -> network ->
 Adapter 1
 1 - Enable Network Adapter
