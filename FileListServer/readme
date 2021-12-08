@@ -1,6 +1,6 @@
 Prefered method:
-To run the server inside a docker container, run ./docker_start.sh or ./docker_start.sh (depending on your OS)
-See instructions in the docker.sh file
+To run the server inside a docker container, run ./docker_start.sh or ./docker_start.bat (depending on your OS)
+See instructions in the docker_start.sh or docker_start.bat file
 
 Alternative method (Not prefered):
 You can also use the server in a VM.
