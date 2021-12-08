@@ -1,0 +1,23 @@
+To run the server inside a docker container, run ./docker.sh
+See instructions in the docker.sh file
+
+You can also use the server in a VM.
+To do that first create two network interface from VM settings.
+VM Virtual Box Manager -> choose your machine -> settings -> network ->
+Adapter 1
+1 - Enable Network Adapter
+2 - Attach to: Host only Adapter
+3 - Name: Virtual Box Host-Only Ethernet Adapter
+4 - In Advanced: Type: Desktop, Cable Connected
+Do this steps for Adapter 2
+Note: You may want to Bridged Adapter too, to connect the internet. 
+To do that, chose Adapter 3; 
+1 - Enable Network Adapter
+2 - Attach to: Bridged Adapter
+3 - Name: Intel in my case (choose the interface that your host machine uses to connect the internet)
+4 - In Advanced: Type: Desktop, Promiscuous Mode: Allow All, Cable Connected
+
+Now, start your VM, you have 3 network interfaces. 2 for our server, 1 for to connect the internet (if needed)
+Simply download the code inside the VM or mount it from your host machine
+run it with java -classpath "bin:lib/*" server.FileListServer 5000
+run it with java -classpath "bin:lib/*" server.FileListServer 5001
