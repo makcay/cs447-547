@@ -83,6 +83,8 @@ public class FileListServer {
 				}
 			}
 			this.file_descriptors = fileArray.toArray(new FileDescriptor[fileArray.size()]);
+		} else {
+			loggerManager.getInstance(this.getClass()).debug("No file found");
 		}
 	}
 	
