@@ -1,8 +1,15 @@
-Prefered method:
-To run the server inside a docker container, run ./docker_start.sh or ./docker_start.bat (depending on your OS)
-See instructions in the docker_start.sh or docker_start.bat file
+Preferred method:
+NEW!: Updated Dockerfile, added files folder to the remote. (This was causing an issue on some of you)
+Now, you should be able to use server on the docker. Follow instructions below:
+- run ./docker_start.sh or ./docker_start.bat (depending on your OS)
+ - See instructions in the docker_start.sh or docker_start.bat file
+- start dummyClient by giving a parameter (ip:port). For docker case it is 127.0.0.1:5000
+ - You can see instructions for this step in the video tutorial shared for vm
 
-Alternative method (Not prefered):
+Note:
+- You can add more test files into the docker. Larger and longer files should be supported by your implementation
+
+Alternative method (Not preferred):
 You can also use the server in a VM.
 To do that first create two network interfaces from VM settings.
 VM Virtual Box Manager -> choose your machine -> settings -> network ->

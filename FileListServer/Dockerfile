@@ -14,5 +14,6 @@ WORKDIR /app
 COPY --from=build /app/target/FileListServer-1.0.0.jar /app
 COPY --from=build /app/target/lib /app/lib
 COPY --from=build /app/tc /app/tc
-RUN apk update && apk add bash iproute2
+COPY --from=build /app/files /app/files
+RUN apk update && apk add bash iproute2 && apk add nano
 
