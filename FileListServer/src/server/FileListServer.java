@@ -30,10 +30,10 @@ public class FileListServer {
 	private FileDescriptor[] file_descriptors=null;
 	private Hashtable<Integer, File> files=new Hashtable<Integer,File>();
 	private long totalSentBytes=0;
-	
+
 	public static final String FILES_FOLDER="files";
 	public static final String PROPERTIES_FILE="conf/server.properties";
-	
+
 	public FileListServer(String[] args) throws SocketException, UnknownHostException{
 		this.loadFileList();
 		this.readPropertiesFile();
@@ -41,7 +41,7 @@ public class FileListServer {
 		this.selectPort(args[0]);
 		this.startListening();
 	}
-	
+
 	public void readPropertiesFile(){
 		Properties prop = new Properties();
 		InputStream propFile = null;
@@ -70,7 +70,7 @@ public class FileListServer {
 	private void loadFileList(){
 		File folder = new File(FILES_FOLDER);
 		File[] listOfFiles = folder.listFiles();
-		
+
 		if (listOfFiles!=null){
 			ArrayList<FileDescriptor> fileArray=new ArrayList<FileDescriptor>();
 			int fileNo=1;
@@ -136,12 +136,14 @@ public class FileListServer {
 
 	private void selectInterface() throws UnknownHostException {
 		selectedAddress = InetAddress.getByAddress(new byte[] { 0, 0, 0, 0 });
+		System.out.print(selectedAddress + ":");
 	}
 
 	private void selectPort(String port) {
 		this.port = Integer.parseInt(port);
+		System.out.println(port);
 	}
-	
+
 	private void startListening() throws SocketException{
 		if (selectedAddress!=null && port>0){
 			DatagramSocket serverSocket=new DatagramSocket(port, selectedAddress);
@@ -158,28 +160,28 @@ public class FileListServer {
 		      }
 		}
 	}
-	
+
 	public void increaseTotalSentBytes(long bytes){
 		totalSentBytes+=bytes;
 	}
-	
+
 	public void logTotalSentBytes(){
 		loggerManager.getInstance(this.getClass()).debug("totalSentBytes: "+totalSentBytes);
 	}
-	
+
 	public void resetTotalSentBytes(){
 		loggerManager.getInstance(this.getClass()).debug("totalSentBytes: "+totalSentBytes);
 		totalSentBytes=0;
 	}
-	
+
 	public FileDescriptor[] getFileDescriptors(){
 		return file_descriptors;
 	}
-	
+
 	public File getFile(int file_id){
 		return files.get(file_id);
 	}
-	
+
 	public static void main(String[] args) throws SocketException, UnknownHostException{
 		FileListServer inst=new FileListServer(args);
 	}

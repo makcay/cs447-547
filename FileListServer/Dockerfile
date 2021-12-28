@@ -14,6 +14,10 @@ WORKDIR /app
 COPY --from=build /app/target/FileListServer-1.0.0.jar /app
 COPY --from=build /app/target/lib /app/lib
 COPY --from=build /app/tc /app/tc
+# Comment line 16 and uncomment line 18 to apply your custom tc policies
+# ADD tc /app/tc
 COPY --from=build /app/files /app/files
+# Comment line 19 and uncomment line 21 to add your files
+# ADD files /app/files
 RUN apk update && apk add bash iproute2 && apk add nano
 
